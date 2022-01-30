@@ -23,6 +23,7 @@ public class CharacterController2D : MonoBehaviour
 	[Space]
 
 	public UnityEvent OnLandEvent;
+    public Animator animator;
 
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
@@ -58,8 +59,15 @@ public class CharacterController2D : MonoBehaviour
 					OnLandEvent.Invoke();
 			}
 		}
+		if (m_Rigidbody2D.velocity.y < 0 && !m_Grounded)
+		{
+            animator.SetBool("IsFalling", true);
+			animator.SetBool("IsJumping", false);
+		}
+		else{
+            animator.SetBool("IsFalling", false);
+		}
 	}
-
 
 	public void Move(float move, bool crouch, bool jump)
 	{
