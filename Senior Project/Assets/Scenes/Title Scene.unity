@@ -494,6 +494,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 37335ff17000754488c61c3b87f46548, type: 2}
+  slider: {fileID: 1704435760}
+  toggle: {fileID: 999070750}
+  graphicsDropdown: {fileID: 1792300131}
   resolutionDropdown: {fileID: 26702153}
 --- !u!1 &136610675
 GameObject:

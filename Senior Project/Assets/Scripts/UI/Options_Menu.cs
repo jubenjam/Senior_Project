@@ -11,13 +11,24 @@ public class Options_Menu : MonoBehaviour
 {
     //audioMixer for volume control
     public AudioMixer audioMixer;
-
+    //other components to set up values at start
+    public Slider slider;
+    public Toggle toggle;
+    public TMP_Dropdown graphicsDropdown;
     public TMP_Dropdown resolutionDropdown;
     //Array of resolutions the computer can use
     Resolution[] resolutions;
 
     void Start()
     {
+        graphicsDropdown.value = QualitySettings.GetQualityLevel();
+        graphicsDropdown.RefreshShownValue();
+        //set fullscreen toggle
+        toggle.isOn = Screen.fullScreen;
+        //set volume
+        float volume = 0f;
+        audioMixer.GetFloat("Volume", out volume);
+        slider.value = volume;
         //find all possible resolutions and clear placeholders
         resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height }).Distinct().ToArray();
         resolutionDropdown.ClearOptions();

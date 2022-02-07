@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Stairs
   - Spikes
+  - Button
+  - Pushable
   layers:
   - Default
   - TransparentFX
