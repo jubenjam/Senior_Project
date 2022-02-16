@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     bool moveInput = false;
     public SpriteRenderer playerSprite;
     Color defaultColor;
+    public UnityEvent OnDeathEvent;
 
 
     void Start()
@@ -24,30 +26,33 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveInput = false;
-        //get horizontal movement
-        horizontalMovement = Input.GetAxisRaw("Horizontal") * runSpeed;
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMovement));
+        if(!PauseMenu.GameIsPaused)
+        {
+            moveInput = false;
+            //get horizontal movement
+            horizontalMovement = Input.GetAxisRaw("Horizontal") * runSpeed;
+            animator.SetFloat("Speed", Mathf.Abs(horizontalMovement));
 
-        if(horizontalMovement != 0)
-        {
-            moveInput = true;
-        }
-        //check for jumping
-        if (Input.GetButtonDown("Jump"))
-        {
-            jump = true;
-            moveInput = true;
-            animator.SetBool("IsJumping", true);
-        }
-        //check for crouching    
-        if (Input.GetButtonDown("Crouch"))
-        {
-            crouch = true;
-        }
-        else if (Input.GetButtonUp("Crouch"))
-        {
-            crouch = false;
+            if(horizontalMovement != 0)
+            {
+                moveInput = true;
+            }
+            //check for jumping
+            if (Input.GetButtonDown("Jump"))
+            {
+                jump = true;
+                moveInput = true;
+                animator.SetBool("IsJumping", true);
+            }
+            //check for crouching    
+            if (Input.GetButtonDown("Crouch"))
+            {
+                crouch = true;
+            }
+            else if (Input.GetButtonUp("Crouch"))
+            {
+                crouch = false;
+            }
         }
 
     }
@@ -75,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = new Vector3(0, 0, 0);
             StartCoroutine(Blink());
+            OnDeathEvent.Invoke();
         }
     }
 

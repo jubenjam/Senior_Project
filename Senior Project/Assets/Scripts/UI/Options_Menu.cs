@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 
 public class Options_Menu : MonoBehaviour
@@ -18,6 +19,14 @@ public class Options_Menu : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
     //Array of resolutions the computer can use
     Resolution[] resolutions;
+
+    public GameObject guiButton;
+
+    private void OnEnable()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(guiButton);
+    }
 
     void Start()
     {
