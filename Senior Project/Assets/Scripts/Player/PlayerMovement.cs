@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public SpriteRenderer playerSprite;
     Color defaultColor;
     public UnityEvent OnDeathEvent;
-
+    public BoxCollider2D topOfCharacter;
 
     void Start()
     {
@@ -48,10 +48,16 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetButtonDown("Crouch"))
             {
                 crouch = true;
+                topOfCharacter.enabled = false;
             }
             else if (Input.GetButtonUp("Crouch"))
             {
                 crouch = false;
+                topOfCharacter.enabled = true;
+            }
+            if (Input.GetButtonDown("Reset"))
+            {
+                Die();
             }
         }
 
@@ -75,17 +81,22 @@ public class PlayerMovement : MonoBehaviour
         jump = false; //don't jump forever
     }
 
-    void OnCollisionEnter2D(Collision2D collision){
-        if(collision.gameObject.tag == "Spikes")
+    private void Die()
+    {
+        transform.position = new Vector3(0, 0, 0);
+        StartCoroutine(Blink());
+        OnDeathEvent.Invoke();
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("Spikes") || collision.gameObject.CompareTag("Enemy"))
         {
-            transform.position = new Vector3(0, 0, 0);
-            StartCoroutine(Blink());
-            OnDeathEvent.Invoke();
+            Die();
         }
     }
 
     void OnCollisionStay2D(Collision2D collision){
-        if(collision.gameObject.tag == "Stairs")
+        if(collision.gameObject.CompareTag("Stairs"))
         {
             if(moveInput == true)
             {   //normal movement
@@ -99,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
     }    
 
     void OnCollisionExit2D(Collision2D collision){
-        if(collision.gameObject.tag == "Stairs")
+        if(collision.gameObject.CompareTag("Stairs"))
         {   //return to normal movement
             gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         }

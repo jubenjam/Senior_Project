@@ -8,11 +8,12 @@ TagManager:
   - Spikes
   - Button
   - Pushable
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - HurtEnemies
   - Water
   - UI
   - Player
