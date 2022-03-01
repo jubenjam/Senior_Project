@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,15 +18,21 @@ public class PlayerMovement : MonoBehaviour
     public UnityEvent OnDeathEvent;
     public BoxCollider2D topOfCharacter;
 
+    public TextMeshProUGUI TextScore;
+    public static int score = 0;
+    public int scoreThisScene = 0;
+
     void Start()
     {
         transform.position = new Vector3(0, 0, 0);
         defaultColor = playerSprite.color;
+        TextScore.transform.position = new Vector3(Screen.width, Screen.height, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
+        TextScore.text = score.ToString();
         if(!PauseMenu.GameIsPaused)
         {
             moveInput = false;
@@ -85,6 +92,8 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position = new Vector3(0, 0, 0);
         StartCoroutine(Blink());
+        score -= scoreThisScene;
+        scoreThisScene = 0;
         OnDeathEvent.Invoke();
     }
 
@@ -92,6 +101,16 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Spikes") || collision.gameObject.CompareTag("Enemy"))
         {
             Die();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Gem"))
+        {
+            collision.gameObject.SetActive(false);
+            score += 100;
+            scoreThisScene += 100;
         }
     }
 

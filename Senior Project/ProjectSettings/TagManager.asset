@@ -9,6 +9,7 @@ TagManager:
   - Button
   - Pushable
   - Enemy
+  - Gem
   layers:
   - Default
   - TransparentFX
