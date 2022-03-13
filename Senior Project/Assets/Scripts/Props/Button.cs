@@ -18,11 +18,6 @@ public class Button : MonoBehaviour
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnCollisionStay2D(Collision2D collision){
         if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Pushable")

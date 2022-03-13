@@ -37,7 +37,7 @@ public class Options_Menu : MonoBehaviour
         //set volume
         float volume = 0f;
         audioMixer.GetFloat("Volume", out volume);
-        slider.value = volume;
+        slider.value = Mathf.Pow(10, (volume / 20));
         //find all possible resolutions and clear placeholders
         resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height }).Distinct().ToArray();
         resolutionDropdown.ClearOptions();
@@ -74,7 +74,7 @@ public class Options_Menu : MonoBehaviour
     //set volume when changed with slider
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("Volume", volume);
+        audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
     }
 
     //set quality when changed with dropdown

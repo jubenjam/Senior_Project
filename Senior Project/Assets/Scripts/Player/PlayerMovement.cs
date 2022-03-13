@@ -104,16 +104,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Gem"))
-        {
-            collision.gameObject.SetActive(false);
-            score += 100;
-            scoreThisScene += 100;
-        }
-    }
-
     void OnCollisionStay2D(Collision2D collision){
         if(collision.gameObject.CompareTag("Stairs"))
         {

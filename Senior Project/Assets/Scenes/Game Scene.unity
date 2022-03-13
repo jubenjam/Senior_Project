@@ -2267,8 +2267,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 1264592744}
   m_HandleRect: {fileID: 341046146}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0.0001
+  m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -8183,6 +8183,7 @@ GameObject:
   - component: {fileID: 1757820935}
   - component: {fileID: 1757820934}
   - component: {fileID: 1757820933}
+  - component: {fileID: 1757820936}
   m_Layer: 7
   m_Name: GemA
   m_TagString: Gem
@@ -8249,7 +8250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757820930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.55, y: 2.65, z: 0}
+  m_LocalPosition: {x: 6.53, y: 2.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13043,6 +13044,19 @@ CircleCollider2D:
   m_Offset: {x: -0.008617014, y: 0.0076104105}
   serializedVersion: 2
   m_Radius: 0.15521237
+--- !u!114 &1757820936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757820930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9a42c33b55cdb4d8be80771e1f9982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 100
 --- !u!1 &1774883060
 GameObject:
   m_ObjectHideFlags: 0
