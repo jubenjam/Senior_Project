@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         TextScore.text = score.ToString();
-        if(!PauseMenu.GameIsPaused)
+        if(!PauseMenu.GameIsPaused && PauseMenu.Pausable)
         {
             moveInput = false;
             //get horizontal movement
