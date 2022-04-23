@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public SpriteRenderer playerSprite;
     Color defaultColor;
     public UnityEvent OnDeathEvent;
-    public BoxCollider2D topOfCharacter;
+    public CircleCollider2D topOfCharacter;
 
     public TextMeshProUGUI TextScore;
     public static int score = 0;

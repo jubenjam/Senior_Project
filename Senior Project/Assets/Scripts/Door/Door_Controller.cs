@@ -9,14 +9,14 @@ public class Door_Controller : MonoBehaviour
     public SpriteRenderer doorSprite;
     public Sprite openDoor;
     public Sprite closedDoor;
-    bool open = false;
+    public bool open = false;
 
     void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             if (open && Input.GetButton("Interact")) {
-                SceneManager.LoadScene("Title Scene");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
     }
