@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Gem : MonoBehaviour
 {
+    public int startvalue = 100;
     public int value = 100;
     void OnEnable()
     {
-        value = 100;
+        value = startvalue;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
