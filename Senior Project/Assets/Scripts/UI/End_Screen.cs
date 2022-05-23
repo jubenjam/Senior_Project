@@ -11,13 +11,13 @@ public class End_Screen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TextScore.text = PlayerMovement.score.ToString()+"/1300";
+        TextScore.text = PlayerMovement.score.ToString()+"/1100";
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Interact"))
+        if (Input.GetButtonDown("Interact"))
         {
             PlayerMovement.score = 0;
             SceneManager.LoadScene(0);

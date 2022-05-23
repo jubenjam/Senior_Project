@@ -16,7 +16,7 @@ public class Door_Controller : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             if (open && Input.GetButton("Interact")) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
             }
         }
     }
